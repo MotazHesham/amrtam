@@ -1,0 +1,127 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+
+    <title> أمر تم</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://kit.fontawesome.com/e0387e9a75.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic&display=swap');
+    </style>
+
+    <link href="css/model.css" rel="stylesheet" type="text/css" />
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+</head>
+
+
+<body>
+
+    <div id="home">
+        <div class="bg-layer">
+
+
+            <div class="slider-text">
+                <div class="logo">
+                    <img src="logo.png" />
+                </div>
+
+
+
+                <div class="word">
+
+                    الموقع قيد التطوير
+                </div>
+                <div class="text">
+                    <h3>آمر تم</h3>
+                    <p>بشغف التميز بدأنا لتسهيل تحدياتكم وانطلقنا في عام 2020 لنقدم الخدمات الإلكترونية الحكوميه بطريقه تسهل اجرائتكم من نقطة البدايه حتى نقطه النهايه تضم منصه آمرتم اكثر من 200خدمة حكوميه إلكترونية تغطي جميع القطاعات الحكوميه الاساسيه بهدف التحسين والتطوير والنهوض بكم وتعزيز مشاركتكم في خدمة الاقتصاد الوطني والمجتمع</p>
+                </div>
+                <a class="btn" data-popup-open="popup-1" href="#">طلب خدمة</a>
+
+                <div class="contact-head">
+                    <h2> للتواصل معنا </h2>
+                    <a href="tel: 920002164"> <i class="fab fa-whatsapp" aria-hidden="true"></i> <span> 920002164</span> </a>
+
+                    <a href="mailto:   info@amertm.com.sa"> <i class="far fa-envelope" aria-hidden="true"></i> <span>   info@amertm.com.sa</span> </a>
+
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+
+    <script>
+        $(function () {
+            //----- OPEN
+            $('[data-popup-open]').on('click', function (e) {
+                var targeted_popup_class = jQuery(this).attr('data-popup-open');
+                $('[data-popup="' + targeted_popup_class + '"]').fadeIn(350);
+
+                e.preventDefault();
+            });
+
+            //----- CLOSE
+            $('[data-popup-close]').on('click', function (e) {
+                var targeted_popup_class = jQuery(this).attr('data-popup-close');
+                $('[data-popup="' + targeted_popup_class + '"]').fadeOut(350);
+
+                e.preventDefault();
+            });
+        });
+    </script>
+
+    <div class="popup" data-popup="popup-1">
+        <div class="popup-inner sponsors_inner">
+
+            <form>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">
+                        البريد الالكتروني:
+                    </label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder=" البريد الالكتروني">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">
+                        الاسم:
+                    </label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder=" الاسم ">
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputEmail1">
+                        الجوال:
+                    </label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder=" الجوال ">
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">اختر الخدمة</label>
+                    <select class="form-control" id="exampleFormControlSelect1">
+                        <option>1 خدمة</option>
+                        <option>2 خدمة</option>
+                        <option>3 خدمة</option>
+                        <option>4 خدمة</option>
+                        <option>5 خدمة </option>
+                    </select>
+                </div>
+
+
+                <button type="submit" class="btn btn-primary">إرسال الطلب</button>
+            </form>
+
+            <a class="popup-close " data-popup-close="popup-1" href="#">x</a>
+        </div>
+
+
+    </div>
+
+</body>
+</html>
