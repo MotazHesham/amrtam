@@ -1,7 +1,9 @@
 <div id="sidebar" class="c-sidebar c-sidebar-fixed c-sidebar-lg-show">
-
+    @php
+        $aboutUs = \App\Models\AboutUs::first();
+    @endphp
     <div class="c-sidebar-brand d-md-down-none">
-        <img src="{{ asset('logo.jpg') }}" class="img-fluid" style="height:130px;">
+        <img src="{{ $aboutUs->logo ? $aboutUs->logo->getUrl('preview') : '' }}" class="img-fluid" >
     </div>
 
     <ul class="c-sidebar-nav">
@@ -75,25 +77,47 @@
                 </ul>
             </li>
         @endcan
-        @can('service_access')
-            <li class="c-sidebar-nav-item">
-                <a href="{{ route("admin.services.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/services") || request()->is("admin/services/*") ? "c-active" : "" }}">
-                    <i class="fa-fw fas fa-server c-sidebar-nav-icon">
+        @can('services_managment_access')
+            <li class="c-sidebar-nav-dropdown {{ request()->is("admin/c-services*") ? "c-show" : "" }} {{ request()->is("admin/services*") ? "c-show" : "" }}">
+                <a class="c-sidebar-nav-dropdown-toggle" href="#">
+                    <i class="fa-fw fas fa-align-right c-sidebar-nav-icon">
 
                     </i>
-                    {{ trans('cruds.service.title') }}
+                    {{ trans('cruds.servicesManagment.title') }}
                 </a>
+                <ul class="c-sidebar-nav-dropdown-items">
+                    @can('c_service_access')
+                        <li class="c-sidebar-nav-item">
+                            <a href="{{ route("admin.c-services.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/c-services") || request()->is("admin/c-services/*") ? "c-active" : "" }}">
+                                <i class="fa-fw fas fa-align-center c-sidebar-nav-icon">
+
+                                </i>
+                                {{ trans('cruds.cService.title') }}
+                            </a>
+                        </li>
+                    @endcan
+                    @can('service_access')
+                        <li class="c-sidebar-nav-item">
+                            <a href="{{ route("admin.services.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/services") || request()->is("admin/services/*") ? "c-active" : "" }}">
+                                <i class="fa-fw fas fa-server c-sidebar-nav-icon">
+
+                                </i>
+                                {{ trans('cruds.service.title') }}
+                            </a>
+                        </li>
+                    @endcan
+                </ul>
             </li>
         @endcan
         @can('quotation_access')
-            <li class="c-sidebar-nav-item">
+            {{-- <li class="c-sidebar-nav-item">
                 <a href="{{ route("admin.quotations.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/quotations") || request()->is("admin/quotations/*") ? "c-active" : "" }}">
                     <i class="fa-fw fas fa-dollar-sign c-sidebar-nav-icon">
 
                     </i>
                     {{ trans('cruds.quotation.title') }}
                 </a>
-            </li>
+            </li> --}}
         @endcan
         @can('clients_list_access')
             <li class="c-sidebar-nav-dropdown {{ request()->is("admin/clients*") ? "c-show" : "" }} {{ request()->is("admin/request-services*") ? "c-show" : "" }}">
@@ -147,7 +171,7 @@
                 </a>
             </li>
         @endcan
-        @can('knowledge_center_access')
+        {{-- @can('knowledge_center_access')
             <li class="c-sidebar-nav-dropdown {{ request()->is("admin/articles*") ? "c-show" : "" }} {{ request()->is("admin/books*") ? "c-show" : "" }} {{ request()->is("admin/samples*") ? "c-show" : "" }}">
                 <a class="c-sidebar-nav-dropdown-toggle" href="#">
                     <i class="fa-fw fab fa-adn c-sidebar-nav-icon">
@@ -188,8 +212,8 @@
                     @endcan
                 </ul>
             </li>
-        @endcan
-        @can('course_access')
+        @endcan --}}
+        {{-- @can('course_access')
             <li class="c-sidebar-nav-item">
                 <a href="{{ route("admin.courses.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/courses") || request()->is("admin/courses/*") ? "c-active" : "" }}">
                     <i class="fa-fw fas fa-graduation-cap c-sidebar-nav-icon">
@@ -198,7 +222,7 @@
                     {{ trans('cruds.course.title') }}
                 </a>
             </li>
-        @endcan
+        @endcan --}}
         @can('news_access')
             <li class="c-sidebar-nav-item">
                 <a href="{{ route("admin.newss.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/newss") || request()->is("admin/newss/*") ? "c-active" : "" }}">

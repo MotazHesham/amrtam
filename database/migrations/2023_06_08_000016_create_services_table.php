@@ -12,6 +12,8 @@ class CreateServicesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->longText('description');
+            $table->text('short_description');
+            $table->boolean('featured')->default(0)->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

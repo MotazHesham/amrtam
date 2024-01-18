@@ -46,6 +46,7 @@ class ConsultantsController extends Controller
 
         $consultant = Consultant::create([
             'short_description' => $request->short_description,
+            'specialization' => $request->specialization,
             'description' => $request->description,
             'user_id' => $user->id
         ]);
@@ -72,6 +73,7 @@ class ConsultantsController extends Controller
     {
         $consultant->update([
             'short_description' => $request->short_description,
+            'specialization' => $request->specialization,
             'description' => $request->description,
         ]);
 

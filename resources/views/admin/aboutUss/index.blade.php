@@ -37,7 +37,7 @@
                             <td>
                                 @if($aboutUs->logo)
                                     <a href="{{ $aboutUs->logo->getUrl() }}" target="_blank" style="display: inline-block">
-                                        <img src="{{ $aboutUs->logo->getUrl('thumb') }}">
+                                        <img src="{{ $aboutUs->logo->getUrl('preview2') }}">
                                     </a>
                                 @endif
                             </td>

@@ -28,6 +28,9 @@
                         {{ trans('cruds.contact.fields.name') }}
                     </th>
                     <th>
+                        الخدمة
+                    </th>
+                    <th>
                         {{ trans('cruds.contact.fields.email') }}
                     </th>
                     <th>
@@ -94,6 +97,7 @@
       { data: 'placeholder', name: 'placeholder' },
 { data: 'id', name: 'id' },
 { data: 'name', name: 'name' },
+{ data: 'category_name', name: 'category.name' }, 
 { data: 'email', name: 'email' },
 { data: 'phone', name: 'phone' },
 { data: 'message', name: 'message' },

@@ -32,6 +32,11 @@ class User extends Authenticatable implements HasMedia
         'commerical_record', 
     ];
 
+    public const GENDER_SELECT = [
+        'male'   => 'ذكر',
+        'female' => 'انثي',
+    ];
+
     public const USER_TYPE_SELECT = [
         'staff'  => 'staff',
         'client' => 'client',
@@ -59,6 +64,16 @@ class User extends Authenticatable implements HasMedia
         'user_type',
         'client_type',
         'national_num',
+
+        'company_name',
+        'district',
+        'city',
+        'address',
+        'nationality',
+        'gender',
+        'working_field',
+        'foreign_employees',
+        'saudi_employees',
         'created_at',
         'updated_at',
         'deleted_at',

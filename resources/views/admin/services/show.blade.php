@@ -25,6 +25,14 @@
                     </tr>
                     <tr>
                         <th>
+                            {{ trans('cruds.service.fields.category') }}
+                        </th>
+                        <td>
+                            {{ $service->category->name ?? '' }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
                             {{ trans('cruds.service.fields.name') }}
                         </th>
                         <td>
@@ -36,7 +44,35 @@
                             {{ trans('cruds.service.fields.description') }}
                         </th>
                         <td>
-                            {{ $service->description }}
+                            {!! $service->description !!}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.service.fields.short_description') }}
+                        </th>
+                        <td>
+                            {{ $service->short_description }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.service.fields.photo') }}
+                        </th>
+                        <td>
+                            @if($service->photo)
+                                <a href="{{ $service->photo->getUrl() }}" target="_blank" style="display: inline-block">
+                                    <img src="{{ $service->photo->getUrl('thumb') }}">
+                                </a>
+                            @endif
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.service.fields.featured') }}
+                        </th>
+                        <td>
+                            <input type="checkbox" disabled="disabled" {{ $service->featured ? 'checked' : '' }}>
                         </td>
                     </tr>
                 </tbody>
@@ -50,6 +86,22 @@
     </div>
 </div>
 
-
+<div class="card">
+    <div class="card-header">
+        {{ trans('global.relatedData') }}
+    </div>
+    <ul class="nav nav-tabs" role="tablist" id="relationship-tabs">
+        <li class="nav-item">
+            <a class="nav-link" href="#service_form_sections" role="tab" data-toggle="tab">
+                {{ trans('cruds.formSection.title') }}
+            </a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane" role="tabpanel" id="service_form_sections">
+            @includeIf('admin.services.relationships.serviceFormSections', ['formSections' => $service->serviceFormSections])
+        </div>
+    </div>
+</div>
 
 @endsection

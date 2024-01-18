@@ -54,43 +54,55 @@
                         <td>
                             {{ App\Models\Joining::GENDER_SELECT[$joining->gender] ?? '' }}
                         </td>
-                    </tr>
+                    </tr>  
                     <tr>
                         <th>
-                            {{ trans('cruds.joining.fields.nationality') }}
+                            {{ trans('cruds.joining.fields.nationalid') }}
                         </th>
                         <td>
-                            {{ App\Models\Joining::NATIONALITY_SELECT[$joining->nationality] ?? '' }}
+                            {{ $joining->nationalid }}
                         </td>
-                    </tr>
+                    </tr> 
                     <tr>
                         <th>
-                            {{ trans('cruds.joining.fields.qualification') }}
+                            {{ trans('cruds.joining.fields.dob') }}
                         </th>
                         <td>
-                            {{ App\Models\Joining::QUALIFICATION_SELECT[$joining->qualification] ?? '' }}
+                            {{ $joining->dob }}
                         </td>
-                    </tr>
+                    </tr> 
                     <tr>
                         <th>
-                            {{ trans('cruds.joining.fields.experience_years') }}
+                            {{ trans('cruds.joining.fields.country') }}
                         </th>
                         <td>
-                            {{ $joining->experience_years }}
+                            {{ $joining->country }}
                         </td>
-                    </tr>
+                    </tr> 
                     <tr>
                         <th>
-                            {{ trans('cruds.joining.fields.cv') }}
+                            {{ trans('cruds.joining.fields.city') }}
                         </th>
                         <td>
-                            @if($joining->cv)
-                                <a href="{{ $joining->cv->getUrl() }}" target="_blank">
-                                    {{ trans('global.view_file') }}
-                                </a>
-                            @endif
+                            {{ $joining->city }}
                         </td>
-                    </tr>
+                    </tr> 
+                    <tr>
+                        <th>
+                            {{ trans('cruds.joining.fields.license') }}
+                        </th>
+                        <td>
+                            {{ $joining->license }}
+                        </td>
+                    </tr> 
+                    <tr>
+                        <th>
+                            {{ trans('cruds.joining.fields.specialization') }}
+                        </th>
+                        <td>
+                            {{ $joining->specialization }}
+                        </td>
+                    </tr> 
                     <tr>
                         <th>
                             {{ trans('cruds.joining.fields.is_sent_email') }}

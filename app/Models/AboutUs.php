@@ -21,6 +21,35 @@ class AboutUs extends Model implements HasMedia
         'cv',
     ];
 
+    public const SERVICE_SELECT = [
+        1  => [
+            'title' => 'خدمات الأعمال والافراد',
+            'description' => '',
+        ], 
+        2  => [
+            'title' => 'الإستثمار الأجنبي',
+            'description' => '',
+        ], 
+        3  => [
+            'title' => 'مستشاري',
+            'description' => '',
+        ], 
+        4  => [
+            'title' => 'وكالاتي',
+            'description' => '',
+        ], 
+        5  => [
+            'title' => 'خدمات السياحة',
+            'description' => '',
+        ], 
+        6  => [
+            'title' => 'خدمات الطلاب والطالبات',
+            'description' => '<br> امر تم هي كمنصة الكترونية تخدم الدارسين الجامعيين وتوفر الوقت والجهد لهم وذألك بتسجيلهم لدى لجامعات المطلوبة 
+                                <br> لنسهم في خلق بيئة تعليمية تفاعلية تساند الطالب والطالبات على تحقيق مستهدفاتهم العلمية بحسب حاجة المستفيد 
+                                <br> باإلضافة لتوفير خدمات وطلبات اخرى',
+        ], 
+    ];
+
     protected $dates = [
         'created_at',
         'updated_at',
@@ -39,7 +68,7 @@ class AboutUs extends Model implements HasMedia
         'address',
         'facebook',
         'instagram',
-        'linkedin',
+        'tiktok',
         'twitter',
         'created_at',
         'updated_at',
@@ -54,7 +83,8 @@ class AboutUs extends Model implements HasMedia
     public function registerMediaConversions(Media $media = null): void
     {
         $this->addMediaConversion('thumb')->fit('crop', 50, 50);
-        $this->addMediaConversion('preview')->fit('crop', 120, 120);
+        $this->addMediaConversion('preview')->width(150)->height(90)->keepOriginalImageFormat();
+        $this->addMediaConversion('preview2')->width(310)->height(90)->keepOriginalImageFormat(); 
     } 
     public function getLogoAttribute()
     {
@@ -63,6 +93,7 @@ class AboutUs extends Model implements HasMedia
             $file->url       = $file->getUrl();
             $file->thumbnail = $file->getUrl('thumb');
             $file->preview   = $file->getUrl('preview');
+            $file->preview2   = $file->getUrl('preview2');
         }
 
         return $file;

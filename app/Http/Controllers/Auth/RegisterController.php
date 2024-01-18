@@ -59,6 +59,14 @@ class RegisterController extends Controller
             'client_type' => ['required'],
             'national_num' => ['nullable'],
             'commerical_record' => ['nullable'],
+            'company_name' => ['nullable'],
+            'district' => ['nullable'],
+            'address' => ['nullable'],
+            'nationality' => ['nullable'],
+            'gender' => ['nullable'],
+            'working_field' => ['nullable'],
+            'foreign_employees' => ['nullable'],
+            'saudi_employees' => ['nullable'],
         ]);
     }
 
@@ -69,15 +77,24 @@ class RegisterController extends Controller
      * @return \App\User
      */
     protected function create(array $data)
-    {
+    { 
         $user = User::create([
-            'name'     => $data['name'],
-            'email'    => $data['email'],
-            'phone_number'    => $data['phone_number'],
+            'name'     => $data['name'] ?? null,
+            'email'    => $data['email'] ?? null,
+            'phone_number'    => $data['phone_number'] ?? null,
             'password' => Hash::make($data['password']), 
             'user_type' => 'client', 
-            'client_type' => $data['client_type'], 
-            'national_num' => $data['national_num'], 
+            'client_type' => $data['client_type'] ?? null, 
+            'national_num' => $data['national_num'] ?? null, 
+            'company_name' => $data['company_name'] ?? null,
+            'district' => $data['district'] ?? null,
+            'city' => $data['city'] ?? null,
+            'address' => $data['address'] ?? null,
+            'nationality' => $data['nationality'] ?? null,
+            'gender' => $data['gender'] ?? null,
+            'working_field' => $data['working_field'] ?? null,
+            'foreign_employees' => $data['foreign_employees'] ?? null,
+            'saudi_employees' => $data['saudi_employees'] ?? null,
         ]);
 
         if (array_key_exists('commerical_record',$data)) {

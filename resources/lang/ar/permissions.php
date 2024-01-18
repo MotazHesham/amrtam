@@ -87,5 +87,11 @@ return [
     'clients_list_access' => 'عرض قائمة العملاء',
     'about_us_edit' => 'تعديل من نحن',
     'about_us_access' => 'عرض قائمة من نحن',
+    'c_service_create' => 'أضافة أقسام خدمات',
+    'c_service_edit' => 'تعديل أقسام خدمات',
+    'c_service_show' => 'عرض أقسام خدمات',
+    'c_service_delete' => 'حذف أقسام خدمات',
+    'c_service_access' => 'إدارة أقسام خدمات',
+    'services_managment_access' => 'إدارة قوائم الخدمات',
     'profile_password_edit' => 'تعديل كلمة المرور',
 ];

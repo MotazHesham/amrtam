@@ -57,12 +57,73 @@
                                     {{ $client->client_type ? \App\Models\User::CLIENT_TYPE_SELECT[$client->client_type] : '' }}
                                 </td>
                             </tr> 
+                            @if($client->client_type == 'individual')
                             <tr>
                                 <th>
                                     رقم الهوية
                                 </th>
                                 <td>
                                     {{ $client->national_num }}
+                                </td>
+                            </tr> 
+                            <tr>
+                                <th>
+                                    الحي
+                                </th>
+                                <td>
+                                    {{ $client->district }}
+                                </td>
+                            </tr> 
+                            <tr>
+                                <th>
+                                    المدينة
+                                </th>
+                                <td>
+                                    {{ $client->city }}
+                                </td>
+                            </tr> 
+                            <tr>
+                                <th>
+                                    الجنسية
+                                </th>
+                                <td>
+                                    {{ $client->nationality }}
+                                </td>
+                            </tr> 
+                            <tr>
+                                <th>
+                                    الجنس
+                                </th>
+                                <td>
+                                    {{ $client->gender }}
+                                </td>
+                            </tr> 
+                            @endif
+                            @if($client->client_type == 'company')
+                            <tr>
+                                <th>
+                                    اسم المنشئة
+                                </th>
+                                <td>
+                                    {{ $client->company_name }}
+                                </td>
+                            </tr> 
+                            <tr>
+                                <th>
+                                    نشاط منشئه
+                                </th>
+                                <td>
+                                    {{ $client->working_field }}
+                                </td>
+                            </tr> 
+                            <tr>
+                                <th>
+                                    عدد العاملين  او الموظفين
+                                </th>
+                                <td>
+                                    الاجانب : {{ $client->foreign_employees }}
+                                    <br>
+                                    السعوديين : {{ $client->saudi_employees }}
                                 </td>
                             </tr> 
                             <tr>
@@ -77,6 +138,15 @@
                                     @endif
                                 </td>
                             </tr>
+                            @endif
+                            <tr>
+                                <th>
+                                    العنوان الوطني
+                                </th>
+                                <td>
+                                    {{ $client->address }}
+                                </td>
+                            </tr> 
                         </tbody>
                     </table>
                     <div class="form-group">

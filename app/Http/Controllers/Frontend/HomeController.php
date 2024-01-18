@@ -15,6 +15,7 @@ use App\Models\Service;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Traits\MediaUploadingTrait;
 use App\Models\Contact;
+use App\Models\CService;
 use App\Models\Joining;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Symfony\Component\HttpFoundation\Response;
@@ -23,41 +24,67 @@ class HomeController extends Controller
 {
     use MediaUploadingTrait;
     public function index(){
-        $about_us = AboutUs::first();
-        $articles = Article::where('active',1)->orderBy('created_at','desc')->simplePaginate(8);
-        $books = Book::where('active',1)->orderBy('created_at','desc')->simplePaginate(8);
-        $samples = Sample::where('active',1)->orderBy('created_at','desc')->simplePaginate(8); 
-        $consultants = Consultant::orderBy('created_at','desc')->simplePaginate(4); 
-        $courses = Course::orderBy('created_at','desc')->simplePaginate(3);
+        $aboutUs = AboutUs::first(); 
         $news = News::orderBy('created_at','desc')->simplePaginate(3);
-        $services = Service::all();
-        return view('frontend.home',compact('about_us',
-                                            'articles',
-                                            'books',
-                                            'samples',
-                                            'consultants',
-                                            'courses',
+        $services = Service::with('category')->where('featured',1)->get();
+        $cservices = CService::where('featured',1)->get();
+        $main_header = true;
+        return view('frontend.home',compact('aboutUs',
+                                            'main_header',
                                             'news',
-                                            'services'));
+                                            'services','cservices'));
     }
 
-    public function quotations(Request $request){ 
-        $quotation = Quotation::create($request->all());
-        alert('تم بنجاح','تم أرسال طلبك إلي الأدارة وسوف يتم أرسال أيميل إلي '. $request->email .' بالعرض قريبا','success')->autoClose(false);
-        return redirect()->route('frontend.home');
+    public function consultants(){
+        $consultants = Consultant::orderBy('created_at','desc')->paginate(20); 
+        return view('frontend.consultants',compact('consultants'));
+    }
+
+    public function contact(){
+        $cservices = CService::get();
+        return view('frontend.contact',compact('cservices'));
+    }
+    public function join_us(){
+        return view('frontend.join_us');
+    }
+    public function reg_company(){
+        return view('frontend.reg_company');
+    }
+    public function reg_user(){
+        return view('frontend.reg_user');
+    }
+    public function team(){
+        return view('frontend.team');
+    }
+    public function about(){
+        $aboutUs = AboutUs::first(); 
+        return view('frontend.about',compact('aboutUs'));
+    }
+
+    public function news(){
+        $news = News::orderBy('created_at','desc')->paginate(15);
+        return view('frontend.news',compact('news'));
+    }
+    public function news_details($id){
+        $raw = News::findOrFail($id);
+        return view('frontend.news_details',compact('raw'));
+    }
+
+    public function service($id){
+        $service = Service::findOrFail($id); 
+        $other_services = Service::where('category_id',$service->category_id)->where('id','!=',$id)->take(10)->get();
+        return view('frontend.service',compact('service','other_services'));
+    }
+
+    public function services($id){
+        $cservice = CService::find($id);
+        $services = Service::where('category_id',$id)->orderBy('created_at','desc')->paginate(15); 
+        return view('frontend.services',compact('services','cservice'));
     }
 
     public function joining(Request $request){
 
-        $joining = Joining::create($request->all());
-
-        if ($request->input('cv', false)) {
-            $joining->addMedia(storage_path('tmp/uploads/' . basename($request->input('cv'))))->toMediaCollection('cv');
-        }
-
-        if ($media = $request->input('ck-media', false)) {
-            Media::whereIn('id', $media)->update(['model_id' => $joining->id]);
-        }
+        $joining = Joining::create($request->all()); 
 
         alert('تم بنجاح','تم أرسال طلبك إلي الأدارة وسوف يتم أرسال أيميل إلي '. $request->email .' بالرد قريبا','success')->autoClose(false);
 

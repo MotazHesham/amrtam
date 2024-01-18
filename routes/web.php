@@ -95,6 +95,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     // Services
     Route::delete('services/destroy', 'ServicesController@massDestroy')->name('services.massDestroy');
+    Route::post('services/media', 'ServicesController@storeMedia')->name('services.storeMedia');
+    Route::post('services/ckmedia', 'ServicesController@storeCKEditorImages')->name('services.storeCKEditorImages');
+    Route::post('services/update_status', 'ServicesController@update_status')->name('services.update_status');
     Route::resource('services', 'ServicesController');
 
     // Request Service
@@ -113,6 +116,11 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('about-uss/media', 'AboutUsController@storeMedia')->name('about-uss.storeMedia');
     Route::post('about-uss/ckmedia', 'AboutUsController@storeCKEditorImages')->name('about-uss.storeCKEditorImages');
     Route::resource('about-uss', 'AboutUsController', ['except' => ['create', 'store', 'show', 'destroy']]);
+
+    // C Services
+    Route::delete('c-services/destroy', 'CServicesController@massDestroy')->name('c-services.massDestroy');
+    Route::post('c-services/update_status', 'CServicesController@update_status')->name('c-services.update_status');
+    Route::resource('c-services', 'CServicesController');
 
     Route::get('messenger', 'MessengerController@index')->name('messenger.index');
     Route::get('messenger/create', 'MessengerController@createTopic')->name('messenger.createTopic');

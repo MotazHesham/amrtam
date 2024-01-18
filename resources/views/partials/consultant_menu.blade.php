@@ -1,7 +1,9 @@
 <div id="sidebar" class="c-sidebar c-sidebar-fixed c-sidebar-lg-show">
-
+    @php
+        $aboutUs = \App\Models\AboutUs::first();
+    @endphp
     <div class="c-sidebar-brand d-md-down-none">
-        <img src="{{ asset('logo.jpg') }}" class="img-fluid" style="height:130px;">
+        <img src="{{ $aboutUs->logo ? $aboutUs->logo->getUrl('preview') : '' }}" class="img-fluid" >
     </div>
 
     <ul class="c-sidebar-nav">

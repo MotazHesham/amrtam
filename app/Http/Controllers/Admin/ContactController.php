@@ -19,7 +19,7 @@ class ContactController extends Controller
         abort_if(Gate::denies('contact_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         if ($request->ajax()) {
-            $query = Contact::query()->select(sprintf('%s.*', (new Contact)->table));
+            $query = Contact::query()->with('category')->select(sprintf('%s.*', (new Contact)->table));
             $table = Datatables::of($query);
 
             $table->addColumn('placeholder', '&nbsp;');
@@ -49,6 +49,9 @@ class ContactController extends Controller
             $table->editColumn('email', function ($row) {
                 return $row->email ? $row->email : '';
             });
+            $table->editColumn('category_name', function ($row) {
+                return $row->category ? $row->category->name : '';
+            });
             $table->editColumn('phone', function ($row) {
                 return $row->phone ? $row->phone : '';
             });
@@ -56,7 +59,7 @@ class ContactController extends Controller
                 return $row->message ? $row->message : '';
             });
 
-            $table->rawColumns(['actions', 'placeholder']);
+            $table->rawColumns(['actions', 'placeholder','category']);
 
             return $table->make(true);
         }

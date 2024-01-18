@@ -37,20 +37,8 @@
                             {{ trans('cruds.joining.fields.gender') }}
                         </th>
                         <th>
-                            {{ trans('cruds.joining.fields.nationality') }}
-                        </th>
-                        <th>
-                            {{ trans('cruds.joining.fields.qualification') }}
-                        </th>
-                        <th>
-                            {{ trans('cruds.joining.fields.experience_years') }}
-                        </th>
-                        <th>
-                            {{ trans('cruds.joining.fields.cv') }}
-                        </th>
-                        <th>
-                            {{ trans('cruds.joining.fields.is_sent_email') }}
-                        </th>
+                            {{ trans('cruds.joining.fields.specialization') }}
+                        </th> 
                         <th>
                             &nbsp;
                         </th>
@@ -157,27 +145,9 @@
                         name: 'gender'
                     },
                     {
-                        data: 'nationality',
-                        name: 'nationality'
-                    },
-                    {
-                        data: 'qualification',
-                        name: 'qualification'
-                    },
-                    {
-                        data: 'experience_years',
-                        name: 'experience_years'
-                    },
-                    {
-                        data: 'cv',
-                        name: 'cv',
-                        sortable: false,
-                        searchable: false
-                    },
-                    {
-                        data: 'is_sent_email',
-                        name: 'is_sent_email'
-                    },
+                        data: 'specialization',
+                        name: 'specialization'
+                    }, 
                     {
                         data: 'actions',
                         name: '{{ trans('global.actions') }}'

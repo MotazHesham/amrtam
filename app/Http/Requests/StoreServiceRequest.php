@@ -17,11 +17,19 @@ class StoreServiceRequest extends FormRequest
     public function rules()
     {
         return [
+            'category_id' => [
+                'required',
+                'integer',
+            ],
             'name' => [
                 'string',
                 'required',
             ],
             'description' => [
+                'required',
+            ],
+            'short_description' => [
+                'string',
                 'required',
             ],
         ];

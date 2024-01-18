@@ -1,6 +1,6 @@
 <?php
 
 return [
-    'site_title' => 'AmrTm',
+    'site_title' => 'أمر تم',
 
 ];
